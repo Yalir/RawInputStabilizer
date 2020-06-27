@@ -16,6 +16,11 @@ import CoreGraphics
 public struct RawPoint: Equatable {
     public var position: CGPoint
     public var pressure: CGFloat
+    
+    public init(position: CGPoint, pressure: CGFloat) {
+        self.position = position
+        self.pressure = pressure
+    }
 }
 
 /// This stroke stabilizer provides both a stabilized path and pressure. Other properties could be stabilized if needed by taking them into account
