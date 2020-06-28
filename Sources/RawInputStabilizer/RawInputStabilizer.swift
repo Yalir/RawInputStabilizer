@@ -96,11 +96,6 @@ public class RawInputStabilizer {
             beginStroke()
         }
         
-        if let last = self.rawPoints.last,
-            last.position == point.position {
-            return []
-        }
-        
         self.rawPoints.append(point)
         generatePoints()
         
