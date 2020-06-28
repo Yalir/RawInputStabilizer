@@ -309,6 +309,32 @@ final class RawInputStabilizerTests: XCTestCase {
         XCTAssertTrue(distances.reversed().isMonotonic)
     }
     
+    func testRawInputStabilizer_closeWithoutAddingPoints_returnsNoPoint() {
+        let stab = RawInputStabilizer(smoothing: 10)
+        let expectation = XCTestExpectation()
+        stab.closeStroke { points in
+            XCTAssertTrue(points.isEmpty)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testRawInputStabilizer_appendOnceThenCloseTwice_doesNotCrash() {
+        let stab = RawInputStabilizer(smoothing: 10)
+        let expect1 = XCTestExpectation()
+        _ = stab.append(RawPoint.random)
+        stab.closeStroke { points in
+            expect1.fulfill()
+        }
+        
+        let expect2 = XCTestExpectation()
+        stab.closeStroke { points in
+            expect2.fulfill()
+        }
+        wait(for: [expect1, expect2], timeout: 1.0)
+    }
+    
     func testRawInputStabilizer_regressionTest() {
         let rawPoints = [
             RawPoint(x:  4.934228003809604,  y: -1.231373934919608,  pressure: 4.53898857886708),

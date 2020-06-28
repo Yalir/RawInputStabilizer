@@ -79,23 +79,14 @@ public class RawInputStabilizer {
     
     // MARK: - Properties
     let smoothing: UInt
-    private var newStroke = true
     private var outputIndex: Int = 0
-    private var readIndex: Int = 0
+    private var readIndex: Int = -1
     private var rawPoints = [RawPoint]()
     private var outputPoints = [RawPoint]()
     private let serialQueue = DispatchQueue(label: "Stabilizer Queue", qos: .userInteractive)
     
     // MARK: - Private methods
     private func _append(_ point: RawPoint) -> [RawPoint] {
-        defer {
-            newStroke = false
-        }
-        
-        if newStroke {
-            beginStroke()
-        }
-        
         self.rawPoints.append(point)
         generatePoints()
         
@@ -104,19 +95,15 @@ public class RawInputStabilizer {
     
     private func _closeStroke() -> [RawPoint] {
         defer {
-            newStroke = true
+            self.outputIndex = 0
+            self.readIndex = -1
+            self.rawPoints.removeAll()
+            self.outputPoints.removeAll()
         }
         
         generatePoints()
         self.outputIndex = outputPoints.count - 1
         return self.smoothPoints
-    }
-    
-    private func beginStroke() {
-        self.outputIndex = 0
-        self.readIndex = -1
-        self.rawPoints.removeAll()
-        self.outputPoints.removeAll()
     }
     
     /// Get generated stroke points which has been smoothed.
