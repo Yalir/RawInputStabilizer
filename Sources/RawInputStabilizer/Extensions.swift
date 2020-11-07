@@ -10,20 +10,20 @@ import CoreGraphics
 
 extension Int {
     func clamped(_ range: Range<Int>) -> Int {
-      return (self < range.lowerBound) ? range.lowerBound : ((self >= range.upperBound) ? range.upperBound - 1: self)
+      (self < range.lowerBound) ? range.lowerBound : ((self >= range.upperBound) ? range.upperBound - 1: self)
     }
 
     func clamped(_ range: ClosedRange<Int>) -> Int {
-      return (self < range.lowerBound) ? range.lowerBound : ((self > range.upperBound) ? range.upperBound: self)
+      (self < range.lowerBound) ? range.lowerBound : ((self > range.upperBound) ? range.upperBound: self)
     }
 }
 
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
-  return CGPoint(x: left.x + right.x, y: left.y + right.y)
+  CGPoint(x: left.x + right.x, y: left.y + right.y)
 }
 
 func - (left: CGPoint, right: CGPoint) -> CGPoint {
-  return CGPoint(x: left.x - right.x, y: left.y - right.y)
+  CGPoint(x: left.x - right.x, y: left.y - right.y)
 }
 
 func += (left: inout CGPoint, right: CGPoint) {
@@ -31,7 +31,7 @@ func += (left: inout CGPoint, right: CGPoint) {
 }
 
 func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
-  return CGPoint(x: point.x * scalar, y: point.y * scalar)
+  CGPoint(x: point.x * scalar, y: point.y * scalar)
 }
 
 func *= (left: inout CGPoint, right: CGFloat) {
@@ -40,10 +40,10 @@ func *= (left: inout CGPoint, right: CGFloat) {
 
 extension CGPoint {
     func length() -> CGFloat {
-      return sqrt(x*x + y*y)
+      sqrt(x*x + y*y)
     }
     
     func distanceTo(_ point: CGPoint) -> CGFloat {
-      return (self - point).length()
+      (self - point).length()
     }
 }

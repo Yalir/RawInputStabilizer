@@ -248,7 +248,7 @@ final class RawInputStabilizerTests: XCTestCase {
         let expectation = XCTestExpectation()
         
         let rawPoints = RawPoint.generate(n: 100)
-        let smoothedStart = rawPoints.reduce([], { $0 + stab.append($1) })
+        let smoothedStart = rawPoints.reduce(into: []) { $0 += stab.append($1) }
         stab.closeStroke { smoothedEnd in
             XCTAssertEqual(rawPoints, smoothedStart + smoothedEnd)
             expectation.fulfill()
@@ -262,8 +262,8 @@ final class RawInputStabilizerTests: XCTestCase {
         var smoothed = [[RawPoint]]()
         for smoothing in stride(from: 1, to: 20, by: 5) {
             let stab = RawInputStabilizer(smoothing: UInt(smoothing))
-            let start = rawPoints.reduce([]) { (smoothedPoints, rawPoint) -> [RawPoint] in
-                smoothedPoints + stab.append(rawPoint)
+            let start = rawPoints.reduce(into: []) { smoothedPoints, rawPoint in
+                smoothedPoints += stab.append(rawPoint)
             }
             
             let expectation = XCTestExpectation()
@@ -288,8 +288,8 @@ final class RawInputStabilizerTests: XCTestCase {
         var smoothed = [[RawPoint]]()
         for smoothing in stride(from: 1, to: 20, by: 5) {
             let stab = RawInputStabilizer(smoothing: UInt(smoothing))
-            let start = rawPoints.reduce([]) { (smoothedPoints, rawPoint) -> [RawPoint] in
-                smoothedPoints + stab.append(rawPoint)
+            let start = rawPoints.reduce(into: []) { smoothedPoints, rawPoint in
+                smoothedPoints += stab.append(rawPoint)
             }
             
             let expectation = XCTestExpectation()
@@ -459,8 +459,8 @@ final class RawInputStabilizerTests: XCTestCase {
         ]
         
         let stab = RawInputStabilizer(smoothing: 3)
-        let start = rawPoints.reduce([]) { (smoothedPoints, rawPoint) -> [RawPoint] in
-            smoothedPoints + stab.append(rawPoint)
+        let start = rawPoints.reduce(into: []) { smoothedPoints, rawPoint in
+            smoothedPoints += stab.append(rawPoint)
         }
         
         let expectation = XCTestExpectation()

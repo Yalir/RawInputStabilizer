@@ -52,8 +52,8 @@ public class RawInputStabilizer {
     
     /// Synchronously add the given RawPoint to the stroke and eventually compute stabilized output points
     public func append(_ point: RawPoint) -> [RawPoint] {
-        return serialQueue.sync {
-            return self._append(point)
+        serialQueue.sync {
+            self._append(point)
         }
     }
     
