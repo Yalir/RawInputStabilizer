@@ -27,11 +27,15 @@ func - (left: CGPoint, right: CGPoint) -> CGPoint {
 }
 
 func += (left: inout CGPoint, right: CGPoint) {
-  left = left + right
+  left = left + right // swiftlint:disable:this shorthand_operator
 }
 
 func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
   return CGPoint(x: point.x * scalar, y: point.y * scalar)
+}
+
+func *= (left: inout CGPoint, right: CGFloat) {
+  left = left * right // swiftlint:disable:this shorthand_operator superfluous_disable_command
 }
 
 extension CGPoint {

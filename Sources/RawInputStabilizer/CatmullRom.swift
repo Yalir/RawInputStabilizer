@@ -13,8 +13,7 @@
 import CoreGraphics
 
 private func CatmullRomParams(v0: CGFloat, v1: CGFloat, v2: CGFloat, v3: CGFloat)
-    -> (p0: CGFloat, p1: CGFloat, p2: CGFloat, p3: CGFloat)
-{
+    -> (p0: CGFloat, p1: CGFloat, p2: CGFloat, p3: CGFloat) {
     typealias CG = CGFloat
     let p0 = v1
     let p1 = (-v0 + v2) * CG(0.5)
@@ -35,9 +34,9 @@ func CatmullRomInterpolate(p0: RawPoint, p1: RawPoint, p2: RawPoint, p3: RawPoin
                                             v2: p2.pressure, v3: p3.pressure)
 
     return (1...samples).map { i in
-        let t  = CGFloat(i) / CGFloat(samples + 1);
-        let t2 = t * t;
-        let t3 = t2 * t;
+        let t  = CGFloat(i) / CGFloat(samples + 1)
+        let t2 = t * t
+        let t3 = t2 * t
         let pos = CGPoint(x: x0 + x1 * t + x2 * t2 + x3 * t3,
                           y: y0 + y1 * t + y2 * t2 + y3 * t3)
         let pressure = p0 + p1 * t + p2 * t2 + p3 * t3

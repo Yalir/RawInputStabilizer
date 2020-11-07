@@ -49,10 +49,8 @@ extension Array where Element: Comparable {
     var isMonotonic: Bool {
         guard count > 1 else { return true }
         
-        for i in 1..<count {
-            if self[i-1] > self[i] {
-                return false
-            }
+        for i in 1..<count where self[i-1] > self[i] {
+            return false
         }
         
         return true
@@ -251,7 +249,7 @@ final class RawInputStabilizerTests: XCTestCase {
         
         let rawPoints = RawPoint.generate(n: 100)
         let smoothedStart = rawPoints.reduce([], { $0 + stab.append($1) })
-        stab.closeStroke() { smoothedEnd in
+        stab.closeStroke { smoothedEnd in
             XCTAssertEqual(rawPoints, smoothedStart + smoothedEnd)
             expectation.fulfill()
         }

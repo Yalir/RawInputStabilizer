@@ -194,8 +194,8 @@ public class RawInputStabilizer {
                 total.pressure += points[idx].pressure
             }
             
-            total.position = total.position * d
-            total.pressure = total.pressure * d
+            total.position *= d
+            total.pressure *= d
             result.append(total)
         }
         
