@@ -42,6 +42,7 @@ final class CatmullRomTests: XCTestCase {
         XCTAssertEqual(interpolated, CatmullRomInterpolate(p0: p0, p1: p1, p2: p2, p3: p3, samples: 10))
     }
 
+    // swiftlint:disable:next empty_xctest_method
     static var allTests = [
         ("testInterpolateZeroSamples_generatesEmptyArray", testInterpolateZeroSamples_generatesEmptyArray),
         ("testInterpolate10Samples_generates10Samples", testInterpolate10Samples_generates10Samples)

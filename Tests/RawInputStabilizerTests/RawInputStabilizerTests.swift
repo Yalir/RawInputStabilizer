@@ -472,6 +472,7 @@ final class RawInputStabilizerTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
     
+    // swiftlint:disable:next empty_xctest_method
     static var allTests = [
         ("testSmooth_nullRadius_returnUnchanged", testSmooth_nullRadius_returnUnchanged),
         ("testSmooth_manyRadii_returnSmoothedPosition", testSmooth_manyRadii_returnSmoothedPosition),
