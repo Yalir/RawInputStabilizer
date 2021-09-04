@@ -3,7 +3,7 @@
 //  RawInputStabilizer
 //
 //  Created by Lucas Soltic on 27/06/2020.
-//  Copyright © 2020 Yalir. All rights reserved.
+//  Copyright © 2019-2021 Yalir. All rights reserved.
 //
 //  Implementation of the stroke stabilizer from [OpenToonz](https://github.com/opentoonz/opentoonz)
 //  project (SmoothStroke class in toonzrasterbrushtool.cpp), converted to the Swift language for
